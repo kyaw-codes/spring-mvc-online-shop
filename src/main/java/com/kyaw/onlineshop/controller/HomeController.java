@@ -8,7 +8,7 @@ public class HomeController {
 
     @GetMapping("/")
     public String welcome() {
-        return "layout/userlayout";
+        return "admin/categoryForm";
     }
 
 

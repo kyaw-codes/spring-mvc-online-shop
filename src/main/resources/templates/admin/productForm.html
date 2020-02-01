@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+</head>
+<body>
+<div th:replace="layout/adminlayout :: adminheader"></div>
+
+<form action="#" th:action="@{/product}" th:object="${product}" method="post">
+    <div class="container">
+
+        <div class="form-group row mt-5">
+            <label for="pname" class="col-sm-2 col-form-label">Name</label>
+            <div class="col-sm-8">
+                <small class="text-danger" th:if="${#fields.errors('name')}" th:errors="*{name}"></small>
+                <input id="pname" type="text" class="col-sm-8 form-control" placeholder="Enter product name"
+                       th:field="*{name}">
+            </div>
+        </div>
+
+        <div class="form-group row mt-5">
+            <label for="category" class="col-sm-2 col-form-label">Category</label>
+            <div class="col-sm-8">
+                <select class="form-control" name="" id="category" th:field="*{category}">
+                    <option th:each="cat : ${categories}" th:value="${cat.id}" th:text="${cat.name}"></option>
+                </select>
+            </div>
+        </div>
+
+        <div class="form-group row mt-5">
+            <label for="qty" class="col-sm-2 col-form-label">Quantity</label>
+            <div class="col-sm-8">
+<!--                <small class="text-danger" th:if="${#fields.errors('quantity')}" th:errors="*{'quantity'}"></small>-->
+                <input id="qty" type="number" class="col-sm-8 form-control" placeholder="Enter product quantity"
+                       th:field="*{quantity}">
+            </div>
+        </div>
+
+        <div class="form-group row mt-5">
+            <label for="price" class="col-sm-2 col-form-label">Price</label>
+            <div class="col-sm-8">
+<!--                <small class="text-danger" th:if="${#fields.errors('price')}" th:errors="*{'price'}"></small>-->
+                <input id="price" type="number" class="col-sm-8 form-control" placeholder="Enter product price"
+                       th:field="*{price}" step="any">
+            </div>
+        </div>
+
+        <div class="form-group row mt-5">
+            <label for="lastUpdated" class="col-sm-2 col-form-label">Last Update</label>
+            <div class="col-sm-8">
+<!--                <small class="text-danger" th:if="${#fields.errors('lastUpdated')}"-->
+<!--                       th:errors="*{'lastUpdated'}"></small>-->
+                <input id="lastUpdated" type="date" class="col-sm-8 form-control" placeholder="Enter product name"
+                       th:field="*{lastUpdated}">
+            </div>
+        </div>
+        <button type="submit" class="btn btn-outline-info">Save</button>
+    </div>
+</form>
+
+<div th:replace="layout/adminlayout :: adminscript"></div>
+</body>
+</html>

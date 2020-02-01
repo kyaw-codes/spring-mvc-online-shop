@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+</head>
+<body>
+<div th:replace="layout/adminlayout :: adminheader"></div>
+
+<div class="container mt-5">
+    <div th:if="${success}">
+        <p class="alert alert-info" role="alert">New product successfully created!</p>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-success">
+            <thead>
+            <tr>
+                <th>Name</th>
+                <th>Category</th>
+                <th>Quantity</th>
+                <th>Price</th>
+                <th>Last Updated</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="pro : ${products}">
+                <td th:text="${pro.name}"></td>
+                <td th:text="${pro.category.name}"></td>
+                <td th:text="${pro.quantity}"></td>
+                <td th:text="${pro.price}"></td>
+                <td th:text="${pro.lastUpdated}"></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div th:replace="layout/adminlayout :: adminscript"></div>
+</body>
+</html>
