@@ -9,9 +9,12 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import javax.validation.Valid;
 
 @Controller
@@ -50,6 +53,22 @@ public class ProductController {
         model.addAttribute("products", productService.findAll());
         model.addAttribute("success", model.containsAttribute("success"));
         return "admin/products";
+    }
+
+    @GetMapping("/product/{id}")
+    public String findProductById(@PathVariable int id, Model model, HttpServletRequest request) {
+
+        HttpSession session = request.getSession(false);
+        if (null != session) model.addAttribute("cartSize", session.getAttribute("cartSize"));
+
+        model.addAttribute("product", productService.findById(id));
+        return "user/product";
+    }
+
+    @GetMapping("/home/category/{id}")
+    public String showProductsByCategory(@PathVariable int id, Model model) {
+        model.addAttribute("products", productService.findProductByCatId(id));
+        return "user/products";
     }
 
 }
