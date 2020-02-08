@@ -20,7 +20,7 @@ import javax.validation.Valid;
 @Controller
 public class ProductController {
 
-    private Logger logger = LoggerFactory.getLogger(this.getClass());
+    // private Logger logger = LoggerFactory.getLogger(this.getClass());
 
     private final ProductService productService;
     private final CategoryService categoryService;

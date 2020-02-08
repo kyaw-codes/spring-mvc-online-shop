@@ -4,7 +4,6 @@ import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
-import javax.validation.constraints.PositiveOrZero;
 import java.time.LocalDate;
 
 @Entity
@@ -19,6 +18,9 @@ public class Product {
     private double price;
     @DateTimeFormat(pattern = "yyyy-MM-dd")
     private LocalDate lastUpdated;
+
+    @Transient
+    private int cartItemQty;
 
     @ManyToOne
     private Category category;
@@ -79,5 +81,13 @@ public class Product {
 
     public void setLastUpdated(LocalDate lastUpdated) {
         this.lastUpdated = lastUpdated;
+    }
+
+    public int getCartItemQty() {
+        return cartItemQty;
+    }
+
+    public void setCartItemQty(int cartItemQty) {
+        this.cartItemQty = cartItemQty;
     }
 }

@@ -12,7 +12,9 @@
 <div th:replace="layout/userlayout :: userhead"></div>
 <div class="container mb-5">
     <div class="row float-right">
-        <i class="fas fa-shopping-cart fa-2x"></i>
+        <a href="#" th:href="@{/cart/cartview}">
+            <i class="fas fa-shopping-cart fa-2x"></i>
+        </a>
         <span class="ml-3" th:text="${cartSize}"></span>
     </div>
     <div class="row">

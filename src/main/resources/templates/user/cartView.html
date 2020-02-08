@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"
+          integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh"
+          crossorigin="anonymous">
+</head>
+<body>
+<div th:replace="layout/userlayout :: userhead"></div>
+
+<div class="container">
+    <div class="row mb-5">
+        <div class="col-sm-4 mt-3" th:each="item : ${cartItems}">
+            <div class="card" style="width: 18rem;">
+                <img src="../static/images/" th:src="@{'/images/' + ${item.name} + '.jpg'}" style="height: 250px"
+                     class="card-img-top" alt="...">
+                <div class="card-body">
+                    <h5 class="card-title" th:text="${item.name}"></h5>
+                    <p class="card-text text-secondary" th:text="${'Price : ' + item.price + 'Ks'}"></p>
+                    <p class="card-text text-secondary" th:text="${'Qty : ' + item.quantity}"></p>
+                    <a href="#" th:href="@{'/product/' + ${item.id}}" class="btn btn-outline-success float-right">Remove</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div>
+        <a href="#" class="btn btn-primary mr-3" th:href="@{/}">Continue Shopping</a>
+        <a href="#" class="btn btn-primary mr-3" th:href="@{/cart/clear}">Clear Cart</a>
+        <a href="#" class="btn btn-primary" th:href="@{/cart/checkoutView}">Check Out</a>
+    </div>
+</div>
+
+<!--<div th:replace="layout/userlayout :: userfooter"></div>-->
+<div th:replace="layout/userlayout :: userscript"></div>
+</body>
+</html>
